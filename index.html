@@ -55,7 +55,7 @@
     }
 
     .container-pk {
-      padding: 35px 150px 20px 150px;
+      padding: 2px 150px 20px 150px;
       min-height: 100vh;
       position: relative;
     }
@@ -64,7 +64,7 @@
       max-width: 600px;
       font-size: 20px;
       padding-right: 100px;
-      margin-top: -50px;
+      margin-top: -10px;
     }
 
     .line {
@@ -125,12 +125,21 @@
       z-index: -1;
     }
 
+    
     .container img {
       width: 500px;
       height: auto;
       display: block;
       position: relative;
     }
+
+    .list-dua-kolom {
+  columns: 2;           
+  column-gap: 30px;     
+  list-style-position: inside;
+  padding: 0;
+  margin: 0;
+}
 
     .page {
       display: none;
@@ -140,15 +149,112 @@
       display: block;
     }
 
-    .back-btn, .next {
-      position: absolute;
-      bottom: 15%;
-    }
+    .back-btn {
+  position: fixed;
+  bottom: 20px;
+  left: 30px;
+  z-index: 99;
+}
 
-    .next {
-      right: 150px;
-    }
-  </style>
+.next {
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  z-index: 99;
+}
+  
+.member-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 30px;
+}
+
+.member-card {
+  background-color: #f0f8f9;
+  border-radius: 15px;
+  padding: 20px 30px;
+  text-align: center;
+  width: 220px;
+  box-shadow: 0 4px 8px rgba(0, 199, 205, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.member-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 199, 205, 0.3);
+}
+
+.member-name {
+  font-weight: 600;
+  font-size: 18px;
+  color: #00c7cd;
+}
+
+.member-id {
+  font-size: 16px;
+  color: #444;
+}
+
+.badge {
+  margin-top: 8px;
+  font-size: 14px;
+  background-color: #00c7cd;
+  color: white;
+  padding: 3px 10px;
+  border-radius: 20px;
+  display: inline-block;
+}
+
+
+body {
+  background: linear-gradient(to right, #ffffff, #f5fcfd);
+}
+
+.page-header {
+  background: linear-gradient(to right, #00c7cd, #00e0ac);
+  color: white;
+  text-align: center;
+  padding: 25px 0;
+  margin-bottom: 30px;
+  border-radius: 0 0 25px 25px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.page.active .container-pk,
+.page.active .container {
+  animation: fadeIn 0.8s ease-in;
+}
+
+@keyframes fadeIn {
+  from {opacity: 0; transform: translateY(10px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+
+.footer {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  font-size: 14px;
+  color: #888;
+  z-index: 98;
+}
+
+.quiz-question.correct {
+  border: 2px solid #00c7cd;
+}
+.quiz-question.incorrect {
+  border: 2px solid #f44336;
+}
+.quiz-question.unanswered {
+  border: 2px solid #ff9800;
+}
+
+
+</style>
 </head>
 <body>
   <!-- Navbar -->
@@ -157,6 +263,7 @@
       <h2><span class="aqua1">Matematika Diskrit</span></h2>
     </div>
     <ul>
+      <li><a href="#" onclick="showPage('kuis')">Kuis</a></li>
       <li><a href="#" onclick="showPage('home')">Home</a></li>
       <li><a href="#" onclick="showPage('pustaka')">Pustaka</a></li>
       <li><a href="#" onclick="showPage('members')">Members</a></li>
@@ -183,8 +290,8 @@
   <!-- Halaman Pustaka -->
   <div class="page" id="pustaka">
     <div class="container-pk">
+<div class="page-header"><h1>📚 Daftar Pustaka</h1></div>
       <p>
-        <h2>DAFTAR PUSTAKA</h2>
         <ul>
           <li>Ari, Rosihan. (2015). <i>Perspektif Matematika 3</i>. Solo: Tiga Serangkai Pustaka Mandiri.</li>
           <li>As'ari, Abdur Rahman, dkk. (2018). <i>Matematika SMA/MA/SMA/MAK Kelas XI Edisi Revisi 2018</i>. Jakarta: Kementerian Pendidikan dan Kebudayaan.</li>
@@ -195,29 +302,57 @@
         
     </p>
     <button class="btn back-btn"  onclick="goBack()">Kembali</button>
-    </div>
+    <div class="footer"><p>&copy; 2025 | Kelompok 1 - Matematika Diskrit</p></div></div>
   </div>
   <!-- Halaman Member -->
-  <div class="page" id="members">
+  
+<div class="page" id="members">
     <div class="container-pk">
-      <p>
-        <h2>Kelompok 1</h2>
-        <ul>
-          <li><strong>Adi Dwi Kurniawan (2403135717)</strong></li>
-          <li>Aditya Deval              (2403125906)</li>
-          <li>Alexandro                 (2403111768)</li>
-          <li>Annisa Ramadhani          (2403113692)</li>
-          <li><strong>Arini Eka Pertiwi (2403111090)</strong></li>
-        </ul>
-    </p>
+<div class="page-header"><h1>👥 Anggota Kelompok 1</h1></div>
+      <div class="member-grid">
+        <div class="member-card">
+          <a href="https://www.instagram.com/adikurniawann___/" target="_blank" style="text-decoration: none;">
+            <div class="member-name">Adi Dwi Kurniawan</div>
+            <div class="member-id">2403135717</div>
+            <div class="badge">Ketua</div>
+          </a>
+        </div>
+        <div class="member-card">
+          <a href="https://www.instagram.com/arinprtwii/" target="_blank" style="text-decoration: none;">
+            <div class="member-name">Arini Eka Pertiwi</div>
+            <div class="member-id">2403111090</div>
+            <div class="badge">Wakil Ketua</div>
+          </a>
+        </div>
+        <div class="member-card">
+          <a href="https://instagram.com/deval.pranataa" target="_blank" style="text-decoration: none;">
+            <div class="member-name">Aditya Deval</div>
+            <div class="member-id">2403125906</div>
+          </a>
+        </div>
+        <div class="member-card">
+          <a href="https://www.instagram.com/alexandrro__/" target="_blank" style="text-decoration: none;">
+            <div class="member-name">Alexandro</div>
+            <div class="member-id">2403111768</div>
+          </a>
+        </div>
+        <div class="member-card">
+          <a href="https://www.instagram.com/annisa.rmadhnii/" target="_blank" style="text-decoration: none;">
+            <div class="member-name">Annisa Ramadhani</div>
+            <div class="member-id">2403113692</div>
+          </a>
+        </div>
+      </div>
     <button class="btn back-btn"  onclick="goBack()">Kembali</button>
+    <div class="footer"><p>&copy; 2025 | Kelompok 1 - Matematika Diskrit</p></div>
     </div>
   </div>
+
   <!-- Halaman Permutasi -->
   <div class="page" id="permutasi">
     <div class="container-pk">
+<div class="page-header"><h1>1. Konsep Permutasi</h1></div>
         <p>
-            <h2>1. Konsep Permutasi</h2>
             <p>Permutasi adalah menggabungkan beberapa objek dari suatu grup dengan memperhatikan urutan. 
                Di dalam permutasi, urutan diperhatikan. Rumus permutasi adalah sebagai berikut:</p>
             
@@ -235,13 +370,13 @@
           </p>
       <button class="btn back-btn" onclick="showPage('home')">Kembali</button>
       <button class="btn next" onclick="showPage('permutasi2')">Lanjut</button>
-    </div>
+    <div class="footer"><p>&copy; 2025 | Kelompok 1 - Matematika Diskrit</p></div></div>
   </div>
 
   <!-- Halaman Permutasi 2 -->
   <div class="page" id="permutasi2">
     <div class="container-pk">
-        <h2>2. Kaidah Permutasi</h2>
+<div class="page-header"><h1>2. Kaidah Permutasi</h1></div>
         <p>Permutasi dibedakan menjadi 4 macam, yaitu :
           <h2>a. Permutasi dari unsur unsur yang berbeda</h2>
           Secara umum, banyak cara menempatkan n buah unsur ke dalam k tempat yang
@@ -270,7 +405,7 @@
         </p>
       <button class="btn back-btn" onclick="showPage('permutasi')">Kembali</button>
       <button class="btn next" onclick="showPage('permutasi3')">Lanjut</button>
-    </div>
+    <div class="footer"><p>&copy; 2025 | Kelompok 1 - Matematika Diskrit</p></div></div>
   </div>
 
   <!-- Halaman Permutasi 3  -->
@@ -304,7 +439,7 @@
         </p>
       <button class="btn back-btn" onclick="showPage('permutasi2')">Kembali</button>
       <button class="btn next" onclick="showPage('permutasi4')">Lanjut</button>
-    </div>
+    <div class="footer"><p>&copy; 2025 | Kelompok 1 - Matematika Diskrit</p></div></div>
   </div>
 
   <!-- Halaman Permutasi 4  -->
@@ -336,7 +471,7 @@
       </p>
       <button class="btn back-btn" onclick="showPage('permutasi3')">Kembali</button>
       <button class="btn next" onclick="showPage('permutasi5')">Lanjut</button>
-    </div>
+    <div class="footer"><p>&copy; 2025 | Kelompok 1 - Matematika Diskrit</p></div></div>
   </div>
 
   <!-- Halaman Permutasi 5  -->
@@ -367,7 +502,7 @@
         </p>
       <button class="btn back-btn" onclick="showPage('permutasi4')">Kembali</button>
       <button class="btn next" onclick="showPage('permutasi6')">Lanjut</button>
-    </div>
+    <div class="footer"><p>&copy; 2025 | Kelompok 1 - Matematika Diskrit</p></div></div>
   </div>
 
   <!-- Halaman Permutasi 6  -->
@@ -398,7 +533,7 @@
         </p>
       <button class="btn back-btn" onclick="showPage('permutasi5')">Kembali</button>
       <button class="btn next" onclick="showPage('permutasi7')">Lanjut</button>
-    </div>
+    <div class="footer"><p>&copy; 2025 | Kelompok 1 - Matematika Diskrit</p></div></div>
   </div>
   <!-- Halaman Permutasi 7  -->
   <div class="page" id="permutasi7">
@@ -429,12 +564,13 @@
         </p>
       <button class="btn back-btn" onclick="showPage('permutasi6')">Kembali</button>
       <button class="btn next" onclick="showPage('permutasi8')">Lanjut</button>
-    </div>
+    <div class="footer"><p>&copy; 2025 | Kelompok 1 - Matematika Diskrit</p></div></div>
   </div>
   <!-- Halaman Permutasi 8  -->
   <div class="page" id="permutasi8">
     <div class="container-pk">
-        <h2>3. Permutasi Siklik </h2>
+      <p>
+        <h2>c. Permutasi Siklik</h2>
         <p>
         Permutasi siklik adalah permutasi yang cara penyusunannya melingkar, 
         sehingga banyaknya menyusun <i>n</i> unsur berlainan dalam lingkaran ditulis dengan:
@@ -458,14 +594,16 @@
         P_{\text{siklik}} = (5 - 1)! = 4! = 24 \text{ cara}
         $$
         </p>
+        </p>
       <button class="btn back-btn" onclick="showPage('permutasi7')">Kembali</button>
       <button class="btn next" onclick="showPage('permutasi9')">Lanjut</button>
-    </div>
+    <div class="footer"><p>&copy; 2025 | Kelompok 1 - Matematika Diskrit</p></div></div>
   </div>
   <!-- Halaman Permutasi 9  -->
   <div class="page" id="permutasi9">
     <div class="container-pk">
-        <h2>4. Permutasi Berulang </h2>
+      <p>
+<h2>d. Permutasi Berulang</h2>
         <p>
         Jika sebuah kata terdiri dari 2 huruf yang disusun dari huruf A, B, dan C, serta kata yang 
         terbentuk boleh mengandung huruf yang sama, maka diperoleh kata-kata seperti:
@@ -510,17 +648,16 @@
         </p>
         
             </p>
-            </p>
       <button class="btn back-btn" onclick="showPage('permutasi8')">Kembali</button>
       <button class="btn next" onclick="showPage('home')">Home</button>
-    </div>
+    <div class="footer"><p>&copy; 2025 | Kelompok 1 - Matematika Diskrit</p></div></div>
   </div>
 
   <!-- Halaman Kombinasi -->
   <div class="page" id="kombinasi">
     <div class="container-pk">
+<div class="page-header"><h1>1. Konsep Kombinasi</h1></div>
       <p>
-        <h2>1. Konsep Kombinasi</h2>
 <p>
 Kombinasi merupakan banyaknya cara memilih anggota dalam jumlah tertentu dari 
 anggota-anggota suatu himpunan. Kombinasi juga bisa diartikan sebagai banyaknya cara 
@@ -544,7 +681,7 @@ Rumus kombinasi dinyatakan sebagai:
 </p>
       <button class="btn back-btn" onclick="showPage('home')">Kembali</button>
       <button class="btn next" onclick="showPage('kombinasi2')">Lanjut</button>
-    </div>
+    <div class="footer"><p>&copy; 2025 | Kelompok 1 - Matematika Diskrit</p></div></div>
   </div>
 
   <!-- Halaman Kombinasi 2 -->
@@ -592,13 +729,12 @@ Rumus kombinasi dinyatakan sebagai:
     </p>
       <button class="btn back-btn" onclick="showPage('kombinasi')">Kembali</button>
       <button class="btn next" onclick="showPage('kombinasi3')">Lanjut</button>
-    </div>
+    <div class="footer"><p>&copy; 2025 | Kelompok 1 - Matematika Diskrit</p></div></div>
   </div>
   <!-- Halaman Kombinasi 3 -->
   <div class="page" id="kombinasi3">
     <div class="container-pk">
-      <p>
-        <h2>2. konsep kombinasi</h2>
+<div class="page-header"><h1>2. konsep kombinasi</h1></div>
           <h2>a. Notasi Kombinasi </h2>
           <p>Di jenjang SMA terdapat pemilihan jurusan. Oleh karena itu, diadakan perpisahan 
               kelas dengan jalan berjabat tangan. Misalkan dicontohkan ada 3 siswa saling berjabat 
@@ -612,7 +748,7 @@ Rumus kombinasi dinyatakan sebagai:
           
           <p>Berdasarkan pemisalan tersebut dapat dinyatakan sebagai berikut:</p>
           <p><strong>1. Permutasi</strong></p>
-          <ul>
+          <ul class="list-dua-kolom">
             <li>Arman - Bintoro</li>
             <li>Arman - Ceril</li>
             <li>Bintoro - Arman</li>
@@ -621,11 +757,9 @@ Rumus kombinasi dinyatakan sebagai:
             <li>Ceril - Bintoro</li>
           </ul>
           <p>= 6 karena <em>urutan diperhatikan</em></p>      
-      </p>
-    </p>
       <button class="btn back-btn" onclick="showPage('kombinasi2')">Kembali</button>
       <button class="btn next" onclick="showPage('kombinasi4')">Lanjut</button>
-    </div>
+    <div class="footer"><p>&copy; 2025 | Kelompok 1 - Matematika Diskrit</p></div></div>
   </div>
   <!-- Halaman Kombinasi 4 -->
   <div class="page" id="kombinasi4">
@@ -661,7 +795,7 @@ $$
 </p>
       <button class="btn back-btn" onclick="showPage('kombinasi3')">Kembali</button>
       <button class="btn next" onclick="showPage('kombinasi5')">Lanjut</button>
-    </div>
+    <div class="footer"><p>&copy; 2025 | Kelompok 1 - Matematika Diskrit</p></div></div>
   </div>
   <!-- Halaman Kombinasi 5 -->
   <div class="page" id="kombinasi5">
@@ -682,7 +816,7 @@ $$
         </p>
       <button class="btn back-btn" onclick="showPage('kombinasi4')">Kembali</button>
       <button class="btn next" onclick="showPage('kombinasi6')">Lanjut</button>
-    </div>
+    <div class="footer"><p>&copy; 2025 | Kelompok 1 - Matematika Diskrit</p></div></div>
   </div>
   <!-- Halaman Kombinasi 6 -->
   <div class="page" id="kombinasi6">
@@ -707,7 +841,7 @@ $$
 </p>
       <button class="btn back-btn" onclick="showPage('kombinasi5')">Kembali</button>
       <button class="btn next" onclick="showPage('kombinasi7')">Lanjut</button>
-    </div>
+    <div class="footer"><p>&copy; 2025 | Kelompok 1 - Matematika Diskrit</p></div></div>
   </div>
   <!-- Halaman Kombinasi 7 -->
   <div class="page" id="kombinasi7">
@@ -740,7 +874,7 @@ $$
     </p>
       <button class="btn back-btn" onclick="showPage('kombinasi6')">Kembali</button>
       <button class="btn next" onclick="showPage('kombinasi8')">Lanjut</button>
-    </div>
+    <div class="footer"><p>&copy; 2025 | Kelompok 1 - Matematika Diskrit</p></div></div>
   </div>
   <!-- Halaman Kombinasi 8 -->
   <div class="page" id="kombinasi8">
@@ -770,7 +904,7 @@ $$
     </p>
       <button class="btn back-btn" onclick="showPage('kombinasi7')">Kembali</button>
       <button class="btn next" onclick="showPage('kombinasi9')">Lanjut</button>
-    </div>
+    <div class="footer"><p>&copy; 2025 | Kelompok 1 - Matematika Diskrit</p></div></div>
   </div>
   <!-- Halaman Kombinasi 9 -->
   <div class="page" id="kombinasi9">
@@ -816,7 +950,7 @@ $$
     </p>
       <button class="btn back-btn" onclick="showPage('kombinasi8')">Kembali</button>
       <button class="btn next" onclick="showPage('kombinasi10')">Lanjut</button>
-    </div>
+    <div class="footer"><p>&copy; 2025 | Kelompok 1 - Matematika Diskrit</p></div></div>
   </div>
   <!-- Halaman Kombinasi 10 -->
   <div class="page" id="kombinasi10">
@@ -865,7 +999,7 @@ $$
      </p>
       <button class="btn back-btn" onclick="showPage('kombinasi9')">Kembali</button>
       <button class="btn next" onclick="showPage('kombinasi11')">Lanjut</button>
-    </div>
+    <div class="footer"><p>&copy; 2025 | Kelompok 1 - Matematika Diskrit</p></div></div>
   </div>
   <!-- Halaman Kombinasi 11 -->
   <div class="page" id="kombinasi11">
@@ -909,7 +1043,7 @@ $$
     </p>
       <button class="btn back-btn" onclick="showPage('kombinasi10')">Kembali</button>
       <button class="btn next" onclick="showPage('kombinasi12')">Lanjut</button>
-    </div>
+    <div class="footer"><p>&copy; 2025 | Kelompok 1 - Matematika Diskrit</p></div></div>
   </div>
   <!-- Halaman Kombinasi 12 -->
   <div class="page" id="kombinasi12">
@@ -943,7 +1077,7 @@ $$
     </p>
       <button class="btn back-btn" onclick="showPage('kombinasi11')">Kembali</button>
       <button class="btn next" onclick="showPage('kombinasi13')">Lanjut</button>
-    </div>
+    <div class="footer"><p>&copy; 2025 | Kelompok 1 - Matematika Diskrit</p></div></div>
   </div>
   <!-- Halaman Kombinasi 13 -->
   <div class="page" id="kombinasi13">
@@ -986,7 +1120,7 @@ $$
     </p>
       <button class="btn back-btn" onclick="showPage('kombinasi12')">Kembali</button>
       <button class="btn next" onclick="showPage('kombinasi14')">Lanjut</button>
-    </div>
+    <div class="footer"><p>&copy; 2025 | Kelompok 1 - Matematika Diskrit</p></div></div>
   </div>
   <!-- Halaman Kombinasi 14 -->
   <div class="page" id="kombinasi14">
@@ -1038,7 +1172,7 @@ $$
     </p>
       <button class="btn back-btn" onclick="showPage('kombinasi13')">Kembali</button>
       <button class="btn next" onclick="showPage('kombinasi15')">Lanjut</button>
-    </div>
+    <div class="footer"><p>&copy; 2025 | Kelompok 1 - Matematika Diskrit</p></div></div>
   </div>
   <!-- Halaman Kombinasi 15 -->
   <div class="page" id="kombinasi15">
@@ -1078,7 +1212,7 @@ $$
 
       <button class="btn back-btn" onclick="showPage('kombinasi14')">Kembali</button>
       <button class="btn next" onclick="showPage('kombinasi16')">Lanjut</button>
-    </div>
+    <div class="footer"><p>&copy; 2025 | Kelompok 1 - Matematika Diskrit</p></div></div>
   </div>
   <!-- Halaman Kombinasi 16 -->
   <div class="page" id="kombinasi16">
@@ -1125,7 +1259,7 @@ $$
 </p>
       <button class="btn back-btn" onclick="showPage('kombinasi15')">Kembali</button>
       <button class="btn next" onclick="showPage('kombinasi17')">Lanjut</button>
-    </div>
+    <div class="footer"><p>&copy; 2025 | Kelompok 1 - Matematika Diskrit</p></div></div>
   </div>
   <!-- Halaman Kombinasi 17 -->
   <div class="page" id="kombinasi17">
@@ -1161,7 +1295,7 @@ $$
 </p>
       <button class="btn back-btn" onclick="showPage('kombinasi16')">Kembali</button>
       <button class="btn next" onclick="showPage('kombinasi18')">Lanjut</button>
-    </div>
+    <div class="footer"><p>&copy; 2025 | Kelompok 1 - Matematika Diskrit</p></div></div>
   </div>
   <!-- Halaman Kombinasi 18 -->
   <div class="page" id="kombinasi18">
@@ -1197,8 +1331,66 @@ $$
       <button class="btn back-btn" onclick="showPage('kombinasi17')">Kembali</button>
       <button class="btn next" onclick="showPage('home')">Home</button>
       
+    <div class="footer"><p>&copy; 2025 | Kelompok 1 - Matematika Diskrit</p></div></div>
+  </div>
+
+  <!-- Halaman Kuis -->
+<div class="page" id="kuis">
+  <div class="container-pk">
+    <div class="page-header"><h1>🎯 Kuis Permutasi dan Kombinasi </h1><p>5 SOAL</p></div>
+
+    <form id="quiz-form">
+      <div class="quiz-question">
+        <p><strong>1.</strong> Dari 5 orang, berapa banyak cara memilih ketua dan sekretaris? (urutan diperhatikan)</p>
+        <label><input type="radio" name="q1" value="20"> 20</label><br>
+        <label><input type="radio" name="q1" value="10"> 10</label><br>
+        <label><input type="radio" name="q1" value="5"> 5</label><br>
+      </div>
+      <br>
+      <div class="quiz-question">
+        <p><strong>2.</strong> Berapa banyak cara menyusun huruf dari kata “MAMA”?</p>
+        <label><input type="radio" name="q2" value="12"> 12</label><br>
+        <label><input type="radio" name="q2" value="24"> 24</label><br>
+        <label><input type="radio" name="q2" value="6"> 6</label><br>
+      </div>
+      <br>
+      <div class="quiz-question">
+        <p><strong>3.</strong> Dalam kombinasi, urutan <em>unsur diperhatikan</em>. Pernyataan ini:</p>
+        <label><input type="radio" name="q3" value="false"> Benar</label><br>
+        <label><input type="radio" name="q3" value="true"> Salah</label><br>
+      </div>
+    </form>
+    <br>
+    <div class="quiz-question">
+      <p><strong>4.</strong> Dari 10 orang, berapa cara memilih 4 orang tanpa memperhatikan urutan?</p>
+      <label><input type="radio" name="q4" value="210"> 210</label><br>
+      <label><input type="radio" name="q4" value="5040"> 5040</label><br>
+      <label><input type="radio" name="q4" value="24"> 24</label><br>
+    </div>
+    <br>
+    <div class="quiz-question">
+      <p><strong>5.</strong> Kombinasi dari 3 unsur diambil 2 adalah?</p>
+      <label><input type="radio" name="q5" value="3"> 3</label><br>
+      <label><input type="radio" name="q5" value="6"> 6</label><br>
+      <label><input type="radio" name="q5" value="2"> 2</label><br>
+    </div>
+    
+    <br>
+    <button class="btn" onclick="selesaiKuis()">Selesai</button>
+    <button id="backBtn" class="btn back-btn" style="display:none;" onclick="goBack()">Kembali</button>  
+    <button class="btn" onclick="resetKuis()" style="margin-left: 10px;">Ulangi</button>
+    <p id="hasil-kuis" style="margin-top: 15px;"></p>
+
+    <div class="nav-footer">
+      <div class="btn-group">
+        
+      </div>
+      <div class="footer"><p>&copy; 2025 | Kelompok 1 - Matematika Diskrit</p></div>
     </div>
   </div>
+</div>
+
+
 
   <!-- KaTeX -->
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.4/katex.min.js"></script>
@@ -1259,6 +1451,64 @@ $$
     }
   
     typeEffect();
+
+  function selesaiKuis() {
+  cekKuis();
+  document.getElementById('backBtn').style.display = 'inline-block';
+}
+
+    function cekKuis() {
+  const jawaban = {
+    q1: "20",
+    q2: "12",
+    q3: "true",
+    q4: "210",
+    q5: "3"
+  };
+
+  let score = 0;
+  let total = Object.keys(jawaban).length;
+  const hasil = document.getElementById("hasil-kuis");
+  hasil.innerHTML = "";
+
+  for (let key in jawaban) {
+    const container = document.querySelector(`input[name="${key}"]`).closest('.quiz-question');
+    const selected = document.querySelector(`input[name="${key}"]:checked`);
+
+    // Bersihkan warna sebelumnya
+    container.style.border = "2px solid transparent";
+
+    if (selected) {
+      if (selected.value === jawaban[key]) {
+        score++;
+        container.style.border = "2px solid #00c7cd";
+        container.insertAdjacentHTML("beforeend", `<p style="color: green;">✔️ Jawaban Benar</p>`);
+      } else {
+        container.style.border = "2px solid #f44336";
+        container.insertAdjacentHTML("beforeend", `<p style="color: red;">❌ Salah. Jawaban yang benar: <strong>${jawaban[key]}</strong></p>`);
+      }
+    } else {
+      container.style.border = "2px solid #ff9800";
+      container.insertAdjacentHTML("beforeend", `<p style="color: orange;">⚠️ Belum dijawab. Jawaban yang benar: <strong>${jawaban[key]}</strong></p>`);
+    }
+  }
+
+  hasil.style.color = score === total ? "green" : "black";
+  hasil.innerHTML = `🎯 Skor akhir kamu: <strong>${score} / ${total}</strong>`;
+}
+function resetKuis() {
+  document.getElementById("quiz-form").reset();
+  document.getElementById("hasil-kuis").innerHTML = "";
+  
+  document.querySelectorAll(".quiz-question").forEach(q => {
+    q.style.border = "none";
+    const pTags = q.querySelectorAll("p");
+    pTags.forEach((p, i) => {
+      if (i > 0) p.remove(); // hapus feedback
+    });
+  });
+}
+
   </script>
   
   
